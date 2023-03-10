@@ -1,0 +1,14 @@
+services:
+  dvwa:
+    image: vulnerables/web-dvwa
+    ports:
+      - 80:80
+    volumes:
+      - ./web_data:/docker/dvwa
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - 8080:8080
+    volumes:
+      - ./web_data:/docker/jenkins

