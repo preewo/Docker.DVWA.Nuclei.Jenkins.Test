@@ -4,6 +4,6 @@ info:
   author: Sis
 
 workflows:
-  - template: dvwa-login.yaml
+  - template: /opt/nuclei_temps/dvwa-login.yaml
     subtemplates:
-      - template: xss_test.yaml
+      - template: /opt/nuclei_temps/xss_test.yaml
