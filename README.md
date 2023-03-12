@@ -6,22 +6,24 @@ This project contains the following components:
 - Nuclei
 - Jenkins
 
-## Installation
+This project provides a Dockerfile for creating a Jenkins Docker image with Nuclei installed and the `nuclei_temps` folder copied to the `/opt` directory. The Docker image also requires a DVWA Docker container to be running on port 80.
 
-1. Clone this repository to your local machine.
-2. Ensure that you have Docker and Docker Compose installed.
-3. Run `docker-compose up -d` to start DVWA on port 80 and Jenkins on port 8080.
+## Getting Started
+
+To get started, you'll need to have Docker installed on your machine. You can download Docker from the official website: https://www.docker.com/get-started
 
 ## Usage
 
-### Nuclei
-1. The Nuclei template is located in the `nuclei_temp` folder.
-2. To use it, run `nuclei -u http://localhost -w workflow-test.yaml`.
-3. This workflow will test the login and stored XSS on DVWA.
+1. Clone this repository to your local machine.
+2. Ensure that you have Docker and Docker Compose installed.
+3. Run `docker build -t custom-jenkins .` to start building the Jenkins image.
 
-### Jenkins
-1. The project can be piped into Jenkins for continuous integration and testing.
-2. Set up a Jenkins pipeline with the appropriate stages to build and test the project.
+This will build the Docker image with Nuclei, OWASP ZAP installed,the nuclei_temps folder copied and tag it with the name `custom-jenkins`.
+
+Now you can use `docker-compose up -d`
+
+This will start the custom Jenkins Docker container with the name `custom-jenkins` and expose port 8080 on your machine and DVWA site on port 80
+
 
 ## Contributing
 
