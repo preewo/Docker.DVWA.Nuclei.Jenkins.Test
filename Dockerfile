@@ -3,7 +3,7 @@ FROM jenkins/jenkins:lts
 # Set the Jenkins admin user and password
 ENV JENKINS_USER=admin \
     JENKINS_PASS=password
-ENV ZAP_PORT 8090
+ENV JENKINS_OPTS="--httpPort=8081"
 
 # Install additional packages
 USER root
@@ -17,7 +17,6 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 RUN curl -sL https://github.com/zaproxy/zaproxy/releases/download/v2.10.0/ZAP_2.10.0_Linux.tar.gz | tar -C /opt -xzf -
 ENV PATH=$PATH:/opt/ZAP_2.10.0
-CMD ["sh", "-c", "/opt/ZAP_2.10.0/zap.sh -daemon -port $ZAP_PORT"]
 COPY nuclei_temps /opt/nuclei_temps
 USER jenkins
 
