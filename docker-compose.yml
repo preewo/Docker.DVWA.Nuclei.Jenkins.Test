@@ -1,14 +1,20 @@
 services:
   dvwa:
-    image: vulnerables/web-dvwa
+    image: custom-dvwa
     ports:
       - 80:80
     volumes:
-      - ./web_data:/docker/dvwa
+      - web_data:/var/www/html
 
   jenkins:
-    image: jenkins/jenkins:lts
+    image: custom-jenkins
+    user: root
     ports:
       - 8080:8080
+      - 8090:8090
     volumes:
-      - ./web_data:/docker/jenkins
+      - jenkins_data:/var/jenkins_home
+
+volumes:
+  web_data:
+  jenkins_data:
