@@ -1,6 +1,6 @@
 services:
   dvwa:
-    image: custom-dvwa
+    image: vulnerables/web-dvwa
     ports:
       - 80:80
     volumes:
